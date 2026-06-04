@@ -11,7 +11,14 @@ Page({
   onShow() {
     if (!app.globalData.userId) { wx.redirectTo({ url: '/pages/index/index' }); return; }
     const info = app.globalData.userInfo;
-    if (info) this.setData({ userEmoji: info.user.emoji });
+    if (info) {
+      this.setData({ userEmoji: info.user.emoji });
+    } else {
+      api.login(app.globalData.userId).then(data => {
+        app.globalData.userInfo = data;
+        this.setData({ userEmoji: data.user.emoji });
+      }).catch(() => {});
+    }
     this.loadData();
   },
 

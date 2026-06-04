@@ -26,6 +26,10 @@ Page({
     const { daysInMonth, firstDayOfWeek } = util.getMonthInfo(year, month);
     if (!silent) this.setData({ loading: true, error: false });
 
+    const onErr = silent && this._loaded
+      ? () => {}  // silent 刷新失败不显示错误
+      : () => this.setData({ loading: false, error: true });
+
     Promise.all([
       api.getMonthRecords(uid, year, month),
       api.getWeekStats(uid),
@@ -53,11 +57,12 @@ Page({
           allDone: !isFuture && doneCount === habits.length,
           partialDone: !isFuture && doneCount > 0 });
       }
+      this._loaded = true;
       this.setData({
         loading: false, monthName: util.getMonthName(month),
         year, month, todayStr, weekStats, monthDone, monthTotal, monthPct,
         habits, calendarDays: cals,
       });
-    }).catch(() => this.setData({ loading: false, error: true }));
+    }).catch(onErr);
   },
 });

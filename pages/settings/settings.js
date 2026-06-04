@@ -6,8 +6,19 @@ Page({
 
   onShow() {
     if (!app.globalData.userId) { wx.redirectTo({ url: '/pages/index/index' }); return; }
+    this._loadUserInfo();
+  },
+
+  _loadUserInfo() {
     const info = app.globalData.userInfo;
-    if (info) this.setData({ userEmoji: info.user.emoji, userName: info.user.display_name });
+    if (info) {
+      this.setData({ userEmoji: info.user.emoji, userName: info.user.display_name });
+    } else {
+      api.login(app.globalData.userId).then(data => {
+        app.globalData.userInfo = data;
+        this.setData({ userEmoji: data.user.emoji, userName: data.user.display_name });
+      }).catch(() => {});
+    }
   },
 
   switchUser() {
