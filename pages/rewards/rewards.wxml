@@ -1,0 +1,59 @@
+<view class="page-wrap">
+  <block wx:if="{{loading}}">
+    <view class="skeleton" style="height:120px;margin-bottom:16px;border-radius:var(--radius)"></view>
+    <view class="skeleton skel-bar" style="width:50%"></view>
+    <view class="skeleton skel-card"></view><view class="skeleton skel-card"></view>
+  </block>
+  <view wx:elif="{{error}}" class="error-wrap">
+    <text>加载失败，请检查网络</text>
+    <view class="retry-btn" bindtap="loadData">重新加载</view>
+  </view>
+  <block wx:else>
+    <view class="section-title">🏆 积分 & 奖励</view>
+
+    <view class="gradient-card">
+      <text class="gradient-label">可用积分</text>
+      <text class="gradient-value">{{availablePoints}}</text>
+      <text class="gradient-sub">累计获得 {{totalPoints}} 分</text>
+    </view>
+
+    <view wx:if="{{weekly}}" class="weekly-card">
+      <view class="weekly-header">📅 第 {{weekly.week}} 周 · 坚持奖励</view>
+      <view class="stat-row">
+        <text>本周完成率</text>
+        <text style="font-weight:700;font-size:1.1em;color:var(--text)">{{weekly.pct}}%</text>
+      </view>
+      <view class="progress-bar"><view class="progress-fill" style="width:{{weekly.pct}}%"></view></view>
+      <view class="weekly-sub">{{weekly.done}}/{{weekly.total}} 项完成 · 70% 以上解锁</view>
+      <view wx:if="{{weekly.pct >= 70}}" class="weekly-badge">🎉 已达 70%！奖励 ⭐ +30 分已生效</view>
+      <view wx:else class="weekly-tip">还差 {{70 - weekly.pct}}% 解锁周奖励</view>
+    </view>
+
+    <view class="section-title" style="font-size:1.05em;margin-top:24px">🎯 兑换奖励</view>
+    <block wx:if="{{rewards.length}}">
+      <view class="rewards-list">
+        <view wx:for="{{rewards}}" wx:key="id" class="reward-item {{availablePoints >= item.threshold ? 'unlocked' : ''}}">
+          <view class="reward-info">
+            <view class="reward-label">{{item._tierLabel}} {{item.label}}</view>
+            <view class="reward-threshold">{{item.threshold}} 分/次<text wx:if="{{item.redeemed_count > 0}}"> · 已兑 {{item.redeemed_count}} 次</text></view>
+          </view>
+          <button wx:if="{{availablePoints >= item.threshold}}" class="claim-btn" data-id="{{item.id}}" bindtap="claimReward">兑换</button>
+        </view>
+      </view>
+    </block>
+    <view wx:else class="empty-wrap">🎉 暂无可兑换奖励</view>
+
+    <block wx:if="{{redemptionHistory.length}}">
+      <view class="section-title" style="font-size:1.05em;margin-top:24px">📜 兑换记录</view>
+      <view class="history-list">
+        <view wx:for="{{redemptionHistory}}" wx:key="id" class="history-item">
+          <view class="history-left">
+            <text class="history-label">{{item.reward_label}}</text>
+            <text class="history-date">{{item._timeAgo}}</text>
+          </view>
+          <text class="history-points">-{{item.threshold}} 分</text>
+        </view>
+      </view>
+    </block>
+  </block>
+</view>

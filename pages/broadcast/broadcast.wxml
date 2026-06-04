@@ -1,0 +1,26 @@
+<view class="page-wrap">
+  <view class="section-title">📢 小喇叭</view>
+  <view class="broadcast-input-wrap">
+    <text class="broadcast-emoji">{{userEmoji}}</text>
+    <input class="broadcast-input" placeholder="说句话..." maxlength="200" value="{{inputValue}}" bindinput="onInput" />
+    <button class="send-btn" bindtap="sendMessage" disabled="{{sending || !inputValue.trim()}}">发送</button>
+  </view>
+  <block wx:if="{{loading}}">
+    <view class="skeleton skel-card"></view><view class="skeleton skel-card"></view>
+  </block>
+  <view wx:elif="{{error}}" class="error-wrap">
+    <text>加载失败</text><view class="retry-btn" bindtap="loadData">重新加载</view>
+  </view>
+  <block wx:elif="{{broadcasts.length}}">
+    <view class="broadcast-list">
+      <view wx:for="{{broadcasts}}" wx:key="id" class="broadcast-item">
+        <view class="b-user-avatar">{{item.user_emoji}}</view>
+        <view class="b-content">
+          <view class="b-text"><text class="b-name">{{item.user_display_name}}</text> {{item.content}}</view>
+          <view class="b-meta">{{item.type === 'manual' ? '💬' : '🔔'}} {{item._timeAgo}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view wx:else class="empty-wrap">暂无动态，开始打卡吧 💪</view>
+</view>

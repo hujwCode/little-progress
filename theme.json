@@ -1,0 +1,28 @@
+{
+  "light": {
+    "bg": "#FDF6EE",
+    "bgCard": "#FFFFFF",
+    "bgSecondary": "#F2E8DC",
+    "accent": "#A8C9A5",
+    "accentDark": "#8B9D83",
+    "highlight": "#F4C7AB",
+    "border": "#E8D5C4",
+    "text": "#4A3F35",
+    "textMuted": "#9C8B7A",
+    "navBg": "#FDF6EE",
+    "navText": "#4A3F35"
+  },
+  "dark": {
+    "bg": "#2A2520",
+    "bgCard": "#3A3430",
+    "bgSecondary": "#322D28",
+    "accent": "#A8C9A5",
+    "accentDark": "#8B9D83",
+    "highlight": "#F4C7AB",
+    "border": "#4A4440",
+    "text": "#E8DDD4",
+    "textMuted": "#9C8F82",
+    "navBg": "#2A2520",
+    "navText": "#E8DDD4"
+  }
+}

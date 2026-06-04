@@ -1,0 +1,20 @@
+<view class="page-user-select">
+  <view class="user-select-container">
+    <view class="user-select-top">
+      <view class="user-select-date">{{dateStr}}</view>
+      <view class="app-title">✨ 小进步</view>
+      <view class="user-select-motto">{{motto}}</view>
+    </view>
+    <view class="app-subtitle">选一个人开始打卡</view>
+    <view class="user-buttons">
+      <view class="user-btn" data-user="me" bindtap="selectUser">
+        <text class="user-btn-emoji">🙋</text>
+        <text class="user-btn-label">我</text>
+      </view>
+      <view class="user-btn" data-user="wife" bindtap="selectUser">
+        <text class="user-btn-emoji">👑</text>
+        <text class="user-btn-label">女王大人</text>
+      </view>
+    </view>
+  </view>
+</view>

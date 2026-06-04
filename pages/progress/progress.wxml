@@ -1,0 +1,44 @@
+<view class="page-wrap">
+  <block wx:if="{{loading}}">
+    <view class="section-title">📊 进度总览</view>
+    <view class="skeleton skel-bar" style="width:50%"></view>
+    <view class="skeleton skel-card"></view>
+    <view class="skeleton skel-block"></view>
+  </block>
+  <view wx:elif="{{error}}" class="error-wrap">
+    <text>加载失败，请检查网络</text>
+    <view class="retry-btn" bindtap="loadData">重新加载</view>
+  </view>
+  <block wx:else>
+    <view class="section-title">📊 进度总览</view>
+    <view class="progress-header">
+      <view class="section-subtitle" style="margin-bottom:0">{{monthName}} {{year}}</view>
+      <view class="legend-wrap">
+        <view class="legend-item"><view class="legend-dot legend-full"></view>全部</view>
+        <view class="legend-item"><view class="legend-dot legend-partial"></view>部分</view>
+        <view class="legend-item"><view class="legend-dot legend-empty"></view>未做</view>
+      </view>
+    </view>
+    <view class="calendar-grid">
+      <view wx:for="{{weekDays}}" wx:key="*this" class="cal-weekday">{{item}}</view>
+      <view wx:for="{{calendarDays}}" wx:key="*this">
+        <view wx:if="{{item.empty}}" class="cal-day cal-day-empty"></view>
+        <view wx:else class="cal-day {{item.isToday ? 'cal-today' : ''}} {{item.allDone ? 'cal-full' : ''}} {{item.partialDone && !item.allDone ? 'cal-partial' : ''}} {{item.isFuture ? 'cal-future' : ''}}">{{item.day}}</view>
+      </view>
+    </view>
+    <view wx:if="{{weekStats}}" class="stats-combo">
+      <view class="stats-item">
+        <view class="stats-label">📅 本周</view>
+        <view class="stats-pct">{{weekStats.pct}}%</view>
+        <view class="stats-detail">{{weekStats.done}}/{{weekStats.total}}</view>
+        <view class="progress-bar"><view class="progress-fill" style="width:{{weekStats.pct}}%"></view></view>
+      </view>
+      <view class="stats-item">
+        <view class="stats-label">📈 本月</view>
+        <view class="stats-pct">{{monthPct}}%</view>
+        <view class="stats-detail">{{monthDone}}/{{monthTotal}}</view>
+        <view class="progress-bar"><view class="progress-fill" style="width:{{monthPct}}%"></view></view>
+      </view>
+    </view>
+  </block>
+</view>

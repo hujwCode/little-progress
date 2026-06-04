@@ -1,0 +1,21 @@
+<view class="page-wrap">
+  <view class="section-title">⚙️ 设置</view>
+  <view class="settings-card">
+    <view class="setting-row">
+      <text class="setting-label">当前用户</text>
+      <text class="setting-value">{{userEmoji}} {{userName}}</text>
+    </view>
+    <view class="setting-btn" bindtap="switchUser">🔄 切换用户</view>
+  </view>
+  <view class="settings-card">
+    <view class="setting-btn setting-btn-danger" bindtap="resetData">🗑️ 重置所有数据</view>
+  </view>
+  <view class="settings-card">
+    <view class="section-title" style="font-size:1.05em;margin-top:0">📋 关于</view>
+    <view class="about-text">✨ 小进步 v2.0<br/>和 TA 一起，每天小进步一点点。</view>
+    <view class="about-text" style="font-size:0.78em">
+      <text>后端：FastAPI + SQLite</text><br/>
+      <text>前端：微信小程序</text>
+    </view>
+  </view>
+</view>

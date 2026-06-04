@@ -1,0 +1,34 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/checkin/checkin",
+    "pages/progress/progress",
+    "pages/rewards/rewards",
+    "pages/broadcast/broadcast",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#FDF6EE",
+    "navigationBarTitleText": "✨ 小进步",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FDF6EE",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#9C8B7A",
+    "selectedColor": "#8B9D83",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/checkin/checkin", "text": "打卡", "iconPath": "images/tab-checkin.png", "selectedIconPath": "images/tab-checkin-active.png" },
+      { "pagePath": "pages/progress/progress", "text": "进度", "iconPath": "images/tab-progress.png", "selectedIconPath": "images/tab-progress-active.png" },
+      { "pagePath": "pages/rewards/rewards", "text": "奖励", "iconPath": "images/tab-rewards.png", "selectedIconPath": "images/tab-rewards-active.png" },
+      { "pagePath": "pages/broadcast/broadcast", "text": "动态", "iconPath": "images/tab-broadcast.png", "selectedIconPath": "images/tab-broadcast-active.png" },
+      { "pagePath": "pages/settings/settings", "text": "设置", "iconPath": "images/tab-settings.png", "selectedIconPath": "images/tab-settings-active.png" }
+    ]
+  },
+  "darkmode": true,
+  "themeLocation": "theme.json",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

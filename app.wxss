@@ -1,0 +1,84 @@
+/* ✨ 小进步 - 全局样式 */
+
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', 'PingFang SC', sans-serif;
+  background-color: var(--bg, #FDF6EE);
+  color: var(--text, #4A3F35);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── CSS 变量 ── */
+page {
+  --bg: #FDF6EE;
+  --bg-card: #FFFFFF;
+  --bg-secondary: #F2E8DC;
+  --accent: #A8C9A5;
+  --accent-dark: #8B9D83;
+  --highlight: #F4C7AB;
+  --border: #E8D5C4;
+  --text: #4A3F35;
+  --text-muted: #9C8B7A;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 2px 12px rgba(74,63,53,0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  page {
+    --bg: #2A2520;
+    --bg-card: #3A3430;
+    --bg-secondary: #322D28;
+    --border: #4A4440;
+    --text: #E8DDD4;
+    --text-muted: #9C8F82;
+    --shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+}
+
+/* ── 骨架屏 ── */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--border) 50%, var(--bg-secondary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius);
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.skel-bar { height: 18px; margin-bottom: 12px; border-radius: 8px; }
+.skel-card { height: 68px; margin-bottom: 12px; border-radius: var(--radius); }
+.skel-block { height: 200px; margin-bottom: 20px; border-radius: var(--radius); }
+
+/* ── 加载/空/错误状态 ── */
+.loading-wrap {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 60px 20px; color: var(--text-muted); font-size: 1em;
+}
+.empty-wrap {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 40px 20px; color: var(--text-muted); font-size: 0.9em; line-height: 1.8;
+}
+.error-wrap {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 60px 20px; color: var(--text-muted); font-size: 1em;
+}
+
+/* ── Section 标题 ── */
+.section-title { font-size: 1.3em; font-weight: 600; margin-bottom: 16px; margin-top: 4px; }
+.section-subtitle { font-size: 1em; font-weight: 500; margin-bottom: 12px; color: var(--text-muted); }
+
+/* ── 页面容器 ── */
+.page-wrap { padding: 20px 20px 24px; min-height: 100vh; }
+
+/* ── 卡片 ── */
+.card { background: var(--bg-card); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+.gradient-card {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white;
+  border-radius: var(--radius); padding: 24px; text-align: center; margin-bottom: 24px; box-shadow: var(--shadow);
+}
+
+/* ── 进度条 ── */
+.progress-bar { height: 8px; background: var(--bg-secondary); border-radius: 99px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 99px; transition: width 0.5s ease; }

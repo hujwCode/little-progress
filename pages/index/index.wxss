@@ -1,0 +1,19 @@
+.page-user-select {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; padding: 24px; background: var(--bg);
+}
+.user-select-container { text-align: center; width: 100%; }
+.user-select-top { margin-bottom: 48px; }
+.user-select-date { font-size: 1em; color: var(--text-muted); margin-bottom: 8px; }
+.user-select-motto { font-size: 0.9em; color: var(--accent-dark); font-style: italic; }
+.app-title { font-size: 2.2em; margin-bottom: 8px; font-weight: 700; color: var(--text); }
+.app-subtitle { color: var(--text-muted); margin-bottom: 36px; font-size: 1em; }
+.user-buttons { display: flex; gap: 20px; justify-content: center; }
+.user-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  background: var(--bg-card); border: 2px solid var(--border);
+  border-radius: var(--radius); padding: 32px 44px; box-shadow: var(--shadow);
+}
+.user-btn:active { opacity: 0.8; transform: scale(0.97); }
+.user-btn-emoji { font-size: 3.2em; }
+.user-btn-label { font-size: 1.2em; font-weight: 600; color: var(--text); }
