@@ -6,6 +6,7 @@
       <text class="setting-value">{{userEmoji}} {{userName}}</text>
     </view>
     <view class="setting-btn" bindtap="switchUser">🔄 切换用户</view>
+    <view class="setting-btn" bindtap="logout" style="margin-top:8px">🚪 退出登录</view>
   </view>
   <view class="settings-card">
     <view class="setting-btn setting-btn-danger" bindtap="resetData">🗑️ 重置所有数据</view>

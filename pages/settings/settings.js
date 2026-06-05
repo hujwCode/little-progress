@@ -34,6 +34,21 @@ Page({
     });
   },
 
+  logout() {
+    wx.showModal({
+      title: '退出登录',
+      content: '确定要退出吗？下次需要重新输入访问码。',
+      success: (res) => {
+        if (!res.confirm) return;
+        wx.removeStorageSync('mb_user');
+        wx.removeStorageSync('mb_code');
+        app.globalData.userId = '';
+        app.globalData.userInfo = null;
+        wx.reLaunch({ url: '/pages/index/index' });
+      },
+    });
+  },
+
   resetData() {
     wx.showModal({
       title: '重置所有数据',
