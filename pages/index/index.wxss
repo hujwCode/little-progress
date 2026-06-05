@@ -21,7 +21,7 @@
 .access-code-input {
   width: 100%; padding: 14px 16px;
   border: 1.5px solid var(--border); border-radius: 10px;
-  font-size: 1.2em; text-align: center; letter-spacing: 8px;
+  font-size: 1.2em; text-align: center; letter-spacing: 3px;
   background: var(--bg-secondary); color: var(--text);
   box-sizing: border-box;
 }
