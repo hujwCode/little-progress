@@ -5,11 +5,16 @@
       <view class="app-title">✨ 小进步</view>
       <view class="user-select-motto">{{motto}}</view>
     </view>
-    <view class="app-subtitle">请输入访问码</view>
-    <view class="code-input-wrap">
-      <input class="code-input" placeholder="访问码" password="{{true}}" maxlength="20" value="{{code}}" bindinput="onCodeInput" />
+
+    <!-- 访问码卡片 -->
+    <view class="access-code-card">
+      <view class="access-code-label">🔐 访问码</view>
+      <input class="access-code-input" placeholder="请输入访问码" password="{{true}}" maxlength="20" value="{{code}}" bindinput="onCodeInput" />
     </view>
-    <view class="app-subtitle" style="margin-top:16px;font-size:0.85em">选一个人开始打卡</view>
+
+    <view class="divider-line"></view>
+
+    <view class="user-select-hint">选择用户开始打卡</view>
     <view class="user-buttons">
       <view class="user-btn" data-user="me" bindtap="selectUser">
         <text class="user-btn-emoji">🙋</text>
