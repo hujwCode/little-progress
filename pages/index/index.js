@@ -11,7 +11,8 @@ Page({
   data: { dateStr: '', motto: '', loading: false, code: '' },
 
   onLoad() {
-    if (app.globalData.userId) {
+    // 只有 userId 和访问码都存在时才自动跳转
+    if (app.globalData.userId && wx.getStorageSync('mb_code')) {
       wx.switchTab({ url: '/pages/checkin/checkin' });
       return;
     }
