@@ -3,7 +3,7 @@
   <view class="broadcast-input-wrap">
     <text class="broadcast-emoji">{{userEmoji}}</text>
     <input class="broadcast-input" placeholder="说句话..." maxlength="200" value="{{inputValue}}" bindinput="onInput" />
-    <button class="send-btn" bindtap="sendMessage" disabled="{{sending || !inputValue.trim()}}">发送</button>
+    <button class="send-btn" bindtap="sendMessage" disabled="{{sending || !_canSend}}">发送</button>
   </view>
   <block wx:if="{{loading}}">
     <view class="skeleton skel-card"></view><view class="skeleton skel-card"></view>

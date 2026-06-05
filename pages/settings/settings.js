@@ -14,7 +14,7 @@ Page({
     if (info) {
       this.setData({ userEmoji: info.user.emoji, userName: info.user.display_name });
     } else {
-      api.login(app.globalData.userId).then(data => {
+      api.login(app.globalData.userId, wx.getStorageSync('mb_code') || '').then(data => {
         app.globalData.userInfo = data;
         this.setData({ userEmoji: data.user.emoji, userName: data.user.display_name });
       }).catch(() => {});
@@ -44,7 +44,7 @@ Page({
         api.resetAll().then(() => {
           wx.hideLoading();
           wx.showToast({ title: '已重置', icon: 'success' });
-          api.login(app.globalData.userId).then(data => {
+          api.login(app.globalData.userId, wx.getStorageSync('mb_code') || '').then(data => {
             app.globalData.userInfo = data;
             this.onShow();
           });

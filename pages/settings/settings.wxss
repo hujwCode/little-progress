@@ -2,7 +2,7 @@
 .setting-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
 .setting-label { font-size: 0.95em; color: var(--text-muted); }
 .setting-value { font-weight: 600; color: var(--text); }
-.setting-btn { width: 100%; padding: 12px; border: 2px solid var(--border); border-radius: var(--radius-sm); background: var(--bg-card); font-size: 0.95em; color: var(--text); text-align: center; }
+.setting-btn { width: 100%; padding: 8px 10px; border: 1.5px solid var(--border); border-radius: 8px; background: var(--bg-card); font-size: 0.85em; color: var(--text); text-align: center; box-sizing: border-box; }
 .setting-btn:active { background: var(--bg-secondary); }
 .setting-btn-danger { border-color: #E8A0A0; color: #B84A4A; }
 .setting-btn-danger:active { background: #FFF0F0; }

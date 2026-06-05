@@ -26,10 +26,11 @@ Page({
 
   loadData() {
     const uid = app.globalData.userId;
+    const code = wx.getStorageSync('mb_code') || '';
     this.setData({ loading: true, error: false });
 
     Promise.all([
-      api.login(uid), api.getPoints(uid), api.getBroadcasts(),
+      api.login(uid, code), api.getPoints(uid), api.getBroadcasts(),
     ]).then(([loginData, pts, bcasts]) => {
       const recs = loginData.today_records || {};
       app.globalData.userInfo = loginData;

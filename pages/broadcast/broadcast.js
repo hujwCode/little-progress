@@ -5,7 +5,7 @@ const util = require('../../utils/util');
 Page({
   data: {
     loading: true, error: false, broadcasts: [],
-    userEmoji: '', inputValue: '', sending: false,
+    userEmoji: '', inputValue: '', sending: false, _canSend: false,
   },
 
   onShow() {
@@ -14,7 +14,7 @@ Page({
     if (info) {
       this.setData({ userEmoji: info.user.emoji });
     } else {
-      api.login(app.globalData.userId).then(data => {
+      api.login(app.globalData.userId, wx.getStorageSync('mb_code') || '').then(data => {
         app.globalData.userInfo = data;
         this.setData({ userEmoji: data.user.emoji });
       }).catch(() => {});
@@ -34,7 +34,10 @@ Page({
       .catch(() => this.setData({ loading: false, error: true }));
   },
 
-  onInput(e) { this.setData({ inputValue: e.detail.value }); },
+  onInput(e) {
+    const val = e.detail.value;
+    this.setData({ inputValue: val, _canSend: val.trim().length > 0 });
+  },
 
   sendMessage() {
     const c = this.data.inputValue.trim();

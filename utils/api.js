@@ -28,8 +28,8 @@ function request(method, path, data) {
 }
 
 module.exports = {
-  login(userId) {
-    return request('POST', '/api/login', { user_id: userId });
+  login(userId, code) {
+    return request('POST', '/api/login', { user_id: userId, code: code || '' });
   },
   getHabits(userId) {
     return request('GET', `/api/habits?user_id=${userId}`);

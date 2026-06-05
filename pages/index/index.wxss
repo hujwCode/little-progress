@@ -8,6 +8,12 @@
 .user-select-motto { font-size: 0.9em; color: var(--accent-dark); font-style: italic; }
 .app-title { font-size: 2.2em; margin-bottom: 8px; font-weight: 700; color: var(--text); }
 .app-subtitle { color: var(--text-muted); margin-bottom: 36px; font-size: 1em; }
+.code-input-wrap { margin-bottom: 8px; }
+.code-input {
+  width: 200px; padding: 10px 16px; border: 2px solid var(--border);
+  border-radius: var(--radius-sm); font-size: 1.1em; text-align: center;
+  background: var(--bg-card); color: var(--text); letter-spacing: 4px;
+}
 .user-buttons { display: flex; gap: 20px; justify-content: center; }
 .user-btn {
   display: flex; flex-direction: column; align-items: center; gap: 12px;

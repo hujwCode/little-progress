@@ -8,7 +8,7 @@ const MOTTOS = [
 ];
 
 Page({
-  data: { dateStr: '', motto: '', loading: false },
+  data: { dateStr: '', motto: '', loading: false, code: '' },
 
   onLoad() {
     if (app.globalData.userId) {
@@ -19,6 +19,9 @@ Page({
   },
 
   _initWelcome() {
+    // 恢复上次存储的访问码
+    const savedCode = wx.getStorageSync('mb_code') || '';
+    this.setData({ code: savedCode });
     const now = new Date();
     const weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
     const months = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
@@ -28,16 +31,23 @@ Page({
     });
   },
 
+  onCodeInput(e) {
+    this.setData({ code: e.detail.value });
+  },
+
   selectUser(e) {
     const userId = e.currentTarget.dataset.user;
+    const code = this.data.code.trim();
+    if (!code) { wx.showToast({ title: '请输入访问码', icon: 'none' }); return; }
     if (this.data.loading) return;
     this.setData({ loading: true });
 
     wx.setStorageSync('mb_user', userId);
+    wx.setStorageSync('mb_code', code);
     app.globalData.userId = userId;
     wx.showLoading({ title: '登录中...', mask: true });
 
-    api.login(userId)
+    api.login(userId, code)
       .then(data => {
         app.globalData.userInfo = data;
         wx.hideLoading();
