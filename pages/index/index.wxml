@@ -1,29 +1,40 @@
 <view class="page-user-select">
   <view class="user-select-container">
+
+    <!-- 顶部：标题 + 日期，始终显示 -->
     <view class="user-select-top">
       <view class="user-select-date">{{dateStr}}</view>
       <view class="app-title">✨ 小进步</view>
       <view class="user-select-motto">{{motto}}</view>
     </view>
 
-    <!-- 访问码卡片 -->
-    <view class="access-code-card">
-      <view class="access-code-label">🔐 访问码</view>
-      <input class="access-code-input" placeholder="请输入访问码" password="{{true}}" maxlength="20" value="{{code}}" bindinput="onCodeInput" />
-    </view>
-
-    <view class="divider-line"></view>
-
-    <view class="user-select-hint">选择用户开始打卡</view>
-    <view class="user-buttons">
-      <view class="user-btn" data-user="me" bindtap="selectUser">
-        <text class="user-btn-emoji">🙋</text>
-        <text class="user-btn-label">我</text>
-      </view>
-      <view class="user-btn" data-user="wife" bindtap="selectUser">
-        <text class="user-btn-emoji">👑</text>
-        <text class="user-btn-label">女王大人</text>
+    <!-- 第一步：输入访问码 -->
+    <view wx:if="{{!codeVerified}}" class="step-access-code">
+      <view class="access-code-card">
+        <view class="access-code-label">🔐 输入访问码</view>
+        <input class="access-code-input" placeholder="请输入" password="{{true}}" maxlength="20" value="{{code}}" bindinput="onCodeInput" />
+        <view class="verify-btn" bindtap="verifyCode" hover-class="verify-btn-active">
+          <text wx:if="{{!verifying}}">确 认</text>
+          <text wx:else>验证中...</text>
+        </view>
       </view>
     </view>
+
+    <!-- 第二步：选择用户 -->
+    <view wx:else class="step-select-user">
+      <view class="divider-line"></view>
+      <view class="user-select-hint">选一个人开始打卡</view>
+      <view class="user-buttons">
+        <view class="user-btn" data-user="me" bindtap="selectUser">
+          <text class="user-btn-emoji">🙋</text>
+          <text class="user-btn-label">我</text>
+        </view>
+        <view class="user-btn" data-user="wife" bindtap="selectUser">
+          <text class="user-btn-emoji">👑</text>
+          <text class="user-btn-label">女王大人</text>
+        </view>
+      </view>
+    </view>
+
   </view>
 </view>
